@@ -1,0 +1,16 @@
+{% extends 'header_main.html' %}
+
+{% block content %} 
+
+{% load crispy_forms_tags %} 
+<div id="time-list" class="container row g-2" style="width: 00%; margin: 20px 100px;">
+</div>
+<form method="POST">
+    {% csrf_token %}
+    {% for item in time_list %}
+        <button {% if item.is_booked %} disabled{% endif %} name="timeslot" value="{{ item.time }}" class="border mx-1 col-2 py-3 text-center bg-{% if item.is_booked %}secondary {% elif item.time == field.value %}primary text-white {% else%}light {% endif %}" type="submit" style="width: 960px; margin: 1px 170px;">{{item.time}}</button>
+    {% endfor %}
+</form>
+ 
+</div>
+{% endblock %}

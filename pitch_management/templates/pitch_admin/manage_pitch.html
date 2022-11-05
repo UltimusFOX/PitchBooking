@@ -1,0 +1,36 @@
+{% extends "header_main.html" %}
+
+{% block content %} 
+
+{% load crispy_forms_tags %}   
+
+<h1 style="text-align: center; padding-top: 1em; padding-bottom: 1em;">Pitch List</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Size</th>
+                <th scope="col">Price</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pitch in form %}
+                <tr>
+                    <th scope="row">{{ pitch.name }}</th>
+                    <td>{{ pitch.size }}</td>
+                    <td>{{ pitch.price }}</td>
+                    <td>
+                        <a style="margin-right: 30px;" href="{% url 'edit_pitch' pitch.id %}">Edit</a>
+                        <a href="{% url 'delete_pitch' pitch.id %}">Remove</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        <a href="{% url 'add_pitch' %}"><button type="button" class="btn btn-primary">Add Pitch</button></a>
+    </div>
+{% endblock %}

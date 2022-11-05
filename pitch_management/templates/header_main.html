@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          {# Include FontAwesome; required for icon display #}
+          <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+          
+          {# Include Bootstrap 4 and jQuery #}
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+          <title>Pitch Booking System</title>   
+      </head>
+      
+ <body>
+    {% include 'messages.html' %}
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      <img src="/static/images/logo.png" width="70" height="50" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'homepage' %}">HOME<span class="sr-only">(current)</span></a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'homepage' %}">Hi, {{user.username}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'my_booking' %}">My bookings</a>
+        </li>
+        {% if user.is_admin %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'manage_pitch' %}">Manage Pitch</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="register">SIGN UP</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="login">LOGIN</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+    {% block content %}
+
+    {% endblock %} 
+  </body>
+</html>

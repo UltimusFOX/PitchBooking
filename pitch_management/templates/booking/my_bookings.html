@@ -1,0 +1,35 @@
+{% extends "header_main.html" %}
+
+{% block content %} 
+
+{% load crispy_forms_tags %}   
+
+<h1 style="text-align: center; padding-top: 1em; padding-bottom: 1em;">Booking List</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Pitch Name</th>
+                <th scope="col">Pitch Price</th>
+                <th scope="col">Pitch Size</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in form %}
+                <tr>
+                    <td>{{ booking.date }}</td>
+                    <td>{{ booking.time }}</td>
+                    <td>{{ booking.pitch_name }}</td>
+                    <td>{{ booking.pitch_price }}</td>
+                    <td>{{ booking.pitch_size }}</td>
+                    <td>
+                        <a href="{% url 'delete_booking' booking.id %}">Remove</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

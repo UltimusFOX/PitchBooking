@@ -1,0 +1,16 @@
+{% extends "header_main.html" %}
+
+{% block content %} 
+
+{% load crispy_forms_tags %}         
+
+    <!--Edit Pitch--> 
+<div class="container py-5">
+	<h1>Edit Pitch</h1>
+	<form method="POST">
+		{% csrf_token %}
+		{{ form|crispy }}
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</div>
+{% endblock %}
